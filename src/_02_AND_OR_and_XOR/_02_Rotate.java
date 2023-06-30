@@ -29,6 +29,12 @@ import org.junit.jupiter.api.Test;
 public class _02_Rotate {
     
     int rotateLeft(int value, int rotateAmount) {
+//    	int x = 010010010 rotate twice
+//    	mask = 0b11000000
+//    	result = x & mask = 01000000
+//    	result >> 6
+//    	x << 2
+//    	x | result
         return -1;
     }
     

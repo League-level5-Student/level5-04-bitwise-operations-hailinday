@@ -64,7 +64,7 @@ public class _01_IntroToAndOrXorNot {
 
         num = ~7 & 0b11111111;
         System.out.println("~7 & 0b11111111 = " + num + "(" + Integer.toBinaryString(num) + ")");
-        
+
         /*
          * Using the | operator to set a bit
          * Putting a '1' in mask will result in that bit being 1
