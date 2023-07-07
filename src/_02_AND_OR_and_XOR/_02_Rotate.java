@@ -35,11 +35,21 @@ public class _02_Rotate {
 //    	result >> 6
 //    	x << 2
 //    	x | result
-        return -1;
+    	int x = value;
+    	int result = x;
+    	result = result >>> (32-rotateAmount);
+    	x = x << rotateAmount;
+    	int fin = x | result;
+        return fin;
     }
     
     int rotateRight(int value, int rotateAmount) {
-        return -1;
+    	int x = value;
+    	int result = x;
+    	result = result << (32-rotateAmount);
+    	x = x >>> rotateAmount;
+    	int fin = x | result;
+        return fin;
     }
     
     @Test
