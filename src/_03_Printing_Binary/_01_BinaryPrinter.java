@@ -14,15 +14,11 @@ public class _01_BinaryPrinter {
     	b = (byte) (b >>> 7);
         // Use the & operator to "mask" the bit in the one's place
         // This can be done by "anding" (&) it with the value of 1
-    	b = (byte) (b & 0b00000001);
+    	b = (byte) (b & 1);
         // Print the result using System.out.print (NOT System.out.println)
     	System.out.print(b);
     	//Use this method to print the remaining 7 bits of b
-    	for(int i = 6; i>=0; i--) {
-    		b = (byte) (b>>>i);
-    		b = (byte) (b & 0b00000001);
-    		System.out.print(b);
-    	}
+    	printByteBinary(byte b); //WRONG WAY, FIGURE OUT HOW TO DO EXACTLY 7 TIMES
     }
 
     public void printShortBinary(short s) {

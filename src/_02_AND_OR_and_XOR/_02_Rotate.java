@@ -35,10 +35,14 @@ public class _02_Rotate {
 //    	result >> 6
 //    	x << 2
 //    	x | result
+    	
     	int x = value;
+    	System.out.println(Integer.toBinaryString(value));
     	int result = x;
     	result = result >>> (32-rotateAmount);
     	x = x << rotateAmount;
+    	System.out.println(Integer.toBinaryString(x));
+    	System.out.println(Integer.toBinaryString(result));
     	int fin = x | result;
         return fin;
     }
