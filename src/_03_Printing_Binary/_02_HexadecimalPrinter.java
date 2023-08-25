@@ -52,12 +52,41 @@ public class _02_HexadecimalPrinter implements ActionListener {
      * You don't have to handle negative numbers unless you want the challenge!
      */
     String binaryToHex(String binaryStr) {
+    	int times = 1;
+    	int decimal = 0;
+    	for (int i = binaryStr.length()-1; i >= 0; i--) {
+			int bit = Integer.parseInt(binaryStr.substring(i,i+1));
+    		if (bit == 1) {
+				decimal += times;
+			}
+    		times *= 2;
+		}
     	
-        return "-";
+    	String hex = "";
+    	String alpha = "ABCDEF";
+    	while (decimal > 0) {
+    		int rem = decimal % 16;
+    		if(rem > 9) {
+    			hex = alpha.substring(rem-10,rem-9) + hex;
+    		} else {
+    		hex = rem + hex;
+    		}
+    		decimal = decimal >>> 4;
+    	}
+        return hex;
     }
     
     String binaryToDec(String binaryStr) {
-        return "-";
+    	int times = 1;
+    	int decimal = 0;
+    	for (int i = binaryStr.length()-1; i >= 0; i--) {
+			int bit = Integer.parseInt(binaryStr.substring(i,i+1));
+    		if (bit == 1) {
+				decimal += times;
+			}
+    		times *= 2;
+		}
+        return "" + decimal;
     }
     
     /*
@@ -67,8 +96,18 @@ public class _02_HexadecimalPrinter implements ActionListener {
         if (binaryStr.length() != 8) {
             return "-";
         }
-
-        return "-";
+        
+        int times = 1;
+    	int decimal = 0;
+    	for (int i = binaryStr.length()-1; i >= 0; i--) {
+			int bit = Integer.parseInt(binaryStr.substring(i,i+1));
+    		if (bit == 1) {
+				decimal += times;
+			}
+    		times *= 2;
+		}
+    	String ret = (char) decimal + "";
+        return ret;
     }
     
     public static void main(String[] args) {
