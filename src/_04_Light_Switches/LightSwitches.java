@@ -55,39 +55,20 @@ public class LightSwitches implements GameControlScene {
      * index = 6        // return true if pink is on (bit 6 == 1)
      */
     boolean isLightOn(int index) {
-        String test = Integer.toBinaryString(lightsOnOff);
-        String bit = test.substring(index-1, index);
-        if(Integer.parseInt(bit) == 1) {
-        	return true;
-        }
+    	int isOn = lightsOnOff & (int)Math.pow(2, index);
+    	if (isOn == (int)Math.pow(2, index)) {
+    		return true;
+    	}
     	return false;
     }
     
     /*
      * This method should only turn on 1 light, example:
      * index = 4        // turn off yellow only (set bit 4 = 1)
-     */
-    Integer binaryToDec(String binaryStr) {
-    	int times = 1;
-    	int decimal = 0;
-    	for (int i = binaryStr.length()-1; i >= 0; i--) {
-			int bit = Integer.parseInt(binaryStr.substring(i,i+1));
-    		if (bit == 1) {
-				decimal += times;
-			}
-    		times *= 2;
-		}
-        return decimal;
-    }
-    
+     */ 
     void turnLightOn(int index) {
-    	String test = Integer.toBinaryString(lightsOnOff);
-    	if(index<test.length()) {
-    		test = test.substring(index-1) + 1 + test.substring(index+1);
-    	} else {
-    		test = test.substring(index-1) + 1;
-    	}
-    	lightsOnOff = binaryToDec(test);
+    	int on = (int) Math.pow(2,index);
+    	lightsOnOff = lightsOnOff | on;
     }
     
     /*
@@ -95,13 +76,8 @@ public class LightSwitches implements GameControlScene {
      * index = 0        // turn off blue only (set bit 0 = 0)
      */
     void turnLightOff(int index) {
-    	String test = Integer.toBinaryString(lightsOnOff);
-    	if(index<test.length()) {
-    		test = test.substring(index-1) + 0 + test.substring(index+1);
-    	} else {
-    		test = test.substring(index-1) + 0;
-    	}
-    	lightsOnOff = binaryToDec(test);
+    	int off = (int) (255 - Math.pow(2, index));
+    	lightsOnOff = lightsOnOff & off;
     }
     
     /*
@@ -118,10 +94,8 @@ public class LightSwitches implements GameControlScene {
      * lightsBitmap = 0b10000001  // lights 0, 7 off
      */                 
     void turnMultiLightsOff(int lightsBitmap) {
-        int inverse = (lightsOnOff ^ 1);
-        int result = (lightsBitmap | lightsOnOff);
-        result = (result ^ 1);
-        lightsOnOff = result;
+        int result = 255 ^ lightsBitmap;
+        lightsOnOff = lightsOnOff & result;
     }
     
     /*
