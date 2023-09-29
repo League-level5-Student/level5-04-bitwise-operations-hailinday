@@ -1,5 +1,7 @@
 package _05_Base64_Decoder;
 
+import java.util.Iterator;
+
 /*
  * Base 64 is a way of encoding binary data using text.
  * Each number 0-63 is mapped to a character.
@@ -83,7 +85,19 @@ public class Base64Decoder {
     //3. Complete this method so that it takes in a string of any length
     //   and returns the full byte array of the decoded base64 characters.
     public static byte[] base64StringToByteArray(String file) {
-    	//USE THE METHOD ABOVE
-        return null;
+    	byte [] values = new byte[(file.length()/4)*3];
+    	System.out.println(file.length());
+    	int i = 0;
+    	int count = 0;
+    	while(count<=file.length()-4) {
+    		byte [] threes = convert4CharsTo24Bits(file.substring(count,count+4));
+    		count+=count+4;
+    		for (int j = i; j < i+3; j++) {
+				values[j] = threes[j-i];
+			}
+    		i+=i+3;
+    	}
+    	System.out.println("Reached?");
+        return values;
     }
 }
